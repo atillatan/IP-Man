@@ -1,0 +1,59 @@
+{
+  "name": "ip-man",
+  "version": "1.0.0",
+  "description": "IP-Man scans your network (WAN and LAN) to determine the identity of all devices, which automatically discovers sevices of devices. It allows you to access your devices everywhere.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "debug": "electron .",
+    "build": "build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atillatan/IP-Man.git"
+  },
+  "keywords": [
+    "IP",
+    "scanner",
+    "monitor",
+    "device",
+    "network",
+    "lan",
+    "wan"
+  ],
+  "author": "atillatan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atillatan/IP-Man/issues"
+  },
+  "homepage": "https://github.com/atillatan/IP-Man#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^2.0.3",
+    "electron-builder": "^20.15.1",
+    "electron-packager": "12.1.0"
+  },
+  "build": {
+    "appId": "IP-Man",
+    "directories": {
+      "buildResources": "../../assets",
+      "output": "../../dist/electron"
+    },
+    "extraResources": {
+      "from": "../../dist/netcore/",
+      "to": "dist/netcore",
+      "filter": [
+        "**/*"
+      ]
+    },
+    "mac": {
+      "category": "IP-Man"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  }
+}

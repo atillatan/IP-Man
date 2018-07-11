@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        ////////////////////////////////////////////////////////////        
+        {
+            "label": "build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "build-DeviceManager.API"              
+            ]
+        },
+         ////////////////////////////////////////////////////////////      
+        {
+            "label": "build-DeviceManager.API",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/DeviceManager/DeviceManager.API/src/DeviceManager.API.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        ////////////////////////////////////////////////////////////
+        {
+            "label": "run-DeviceManager.Web",
+            "command": "ng",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/src/DeviceManager/DeviceManager.Web"
+            },
+            "args": [
+                "serve"
+            ],
+            "problemMatcher": "$msCompile"
+            
+        },
+    ]
+}

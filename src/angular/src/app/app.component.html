@@ -1,0 +1,24 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo center">{{head}}</a>
+  </div>
+</nav>
+
+<table class="striped"> 
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Family Name</th>
+      <th>Age</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.Name }}</td>
+      <td>{{ user.FamilyName }}</td>
+      <td>{{ user.Age }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+</table>

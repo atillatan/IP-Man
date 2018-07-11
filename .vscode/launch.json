@@ -1,0 +1,62 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+            "name": "Debug DeviceManager.API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/DeviceManager/DeviceManager.API/src/bin/Debug/netcoreapp2.1/DeviceManager.API.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/DeviceManager/DeviceManager.API/src",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}/api/values"
+                },
+                "osx": {
+                    "command": "open",
+                    "args": "${auto-detect-url}/api/values"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        ////////////////////////////////////////////////////////////
+        {
+            "name": "Debug DeviceManager.Web",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:4200/",
+            "webRoot": "${workspaceFolder}/src/DeviceManager/DeviceManager.Web",
+            "preLaunchTask": "run-DeviceManager.Web"
+        },
+        ////////////////////////////////////////////////////////////
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Electron",
+            "runtimeExecutable": "${workspaceFolder}/src/electron/node_modules/.bin/electron",
+            "program": "${workspaceFolder}/src/electron/main.js",
+            "protocol": "inspector"
+        },
+        ////////////////////////////////////////////////////////////
+        {
+            "name": "Attach Chrome DeviceManager.Web",
+            "type": "chrome",
+            "request": "attach",
+            "url": "http://localhost:4200/",
+            "webRoot": "${workspaceFolder}/src/DeviceManager/DeviceManager.Web"
+        }
+    ]
+}

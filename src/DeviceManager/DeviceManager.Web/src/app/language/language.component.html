@@ -1,0 +1,119 @@
+<div class="animate-bottom">
+  <h2>Languages</h2>
+
+  <mat-accordion>
+    <mat-expansion-panel expanded="panelOpenState">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Actions
+        </mat-panel-title>
+        <mat-panel-description>
+          You can crud operations here
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <!-- Entry -->
+      <form (ngSubmit)="postOrPut()">
+        <!-- form-group separator -->
+        <div style="display:flex; flex-direction: column;">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Key' | translate}}" [(ngModel)]="entryDto.Key" name="Key" id="Key" />
+            <button mat-button *ngIf="entryDto.Key" matSuffix mat-icon-button aria-label="Clear" (click)="entryDto.Key=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <!-- form-group separator -->
+        <div style="display:flex; flex-direction: column;">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Val' | translate}}" [(ngModel)]="entryDto.Val" name="Val" id="Val" />
+            <button mat-button *ngIf="entryDto.Val" matSuffix mat-icon-button aria-label="Clear" (click)="entryDto.Val=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <!-- form-group separator -->
+        <div style="display:flex; flex-direction: column;">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'Language Code' | translate}}" [(ngModel)]="entryDto.LanguageCode" name="Value"
+              id="LanguageCode" />
+            <button mat-button *ngIf="entryDto.LanguageCode" matSuffix mat-icon-button aria-label="Clear" (click)="entryDto.LanguageCode=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <!-- form-group separator -->
+        <div style="text-align: right;">
+          <button type="submit" matTooltip="{{'Save' | translate}}" mat-raised-button color="primary">
+            <i class="material-icons">save</i>
+          </button>&nbsp;
+          <button type="button" matTooltip="{{'Clear' | translate}}" mat-raised-button color="accent" (click)="resetEntry()">
+            <i class="material-icons">refresh</i>
+          </button>
+        </div>
+      </form>
+      <!-- Entry -->
+    </mat-expansion-panel>
+  </mat-accordion>
+  <br>
+
+
+  <!-- List -->
+  <div class=”container”>
+    <table mat-table [dataSource]="dtoList" class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">
+      <!-- Key Column -->
+      <ng-container matColumnDef="Key">
+        <th mat-header-cell *matHeaderCellDef>{{'Key' | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.Key}} </td>
+      </ng-container>
+      <!-- Value Column -->
+      <ng-container matColumnDef="Val">
+        <th mat-header-cell *matHeaderCellDef>{{'Value' | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.Val}} </td>
+      </ng-container>
+      <!-- Language Code Column -->
+      <ng-container matColumnDef="LanguageCode">
+        <th mat-header-cell *matHeaderCellDef>{{'Language Code' | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.LanguageCode}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+
+
+
+
+
+      <!-- <thead style="background-color:#b4cff1">
+        <tr>
+          <th>#</th>
+          <th mat-sort-header="Key">{{'Key' | translate}}</th>
+          <th mat-sort-header="Val">{{'Value' | translate}}</th>
+          <th mat-sort-header="LanguageCode">{{'Language Code' | translate}}</th>
+          <th>-</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dto of dtoList; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ dto.Key }}</td>
+          <td>{{ dto.Val }}</td>
+          <td>{{ dto.LanguageCode }}</td>
+          <td>
+            <button type="button" matTooltip="{{'Edit Row' | translate}}" mat-mini-fab color="primary" (click)="get(dto)">
+              <i class="material-icons">border_color</i>
+            </button>
+            &nbsp;
+            <button type="button" matTooltip="{{'Delete Row' | translate}}" mat-mini-fab (click)="openDialog(dto)">
+              <i class="material-icons">cancel</i>
+            </button>
+          </td>
+        </tr>
+      </tbody> -->
+    </table>
+  </div>
+  <!-- List -->
+  <mat-paginator [length]="pagingDto.count" [pageSize]="pagingDto.pageSize" [pageSizeOptions]="[10, 15, 20, 50]" (page)="changePage($event)">
+  </mat-paginator>
+</div>
