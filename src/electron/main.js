@@ -6,7 +6,7 @@ const {
 
 const path = require('path');
 const url = require('url');
-//process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'production';
 
 let mainWindow;
 const os = require('os');
@@ -36,9 +36,7 @@ process.on('exit', function () {
 // #endregion
 
 function init() {
-    if (process.env.NODE_ENV === 'production') {
-        startNetCoreApi();
-    }
+    startNetCoreApi();
     createMainWindow();
 }
 
@@ -53,9 +51,10 @@ function createMainWindow() {
     });
 
     if (process.env.NODE_ENV === 'production') {
-        mainWindow.loadURL('http://localhost:5000/index.html');
+        mainWindow.loadURL('http://localhost:5001/index.html');
     } else {
-        mainWindow.loadURL('http://localhost:4200');
+        //mainWindow.loadURL('http://localhost:4200');
+        mainWindow.loadURL('http://localhost:5001/index.html');
     }
 
     // Quit app when closed
@@ -84,7 +83,7 @@ function createMainWindow() {
         mainMenuTemplate.push({
             label: 'Developer Tools',
             submenu: [{
-                    label: 'Toggle Devtools',
+                    label: 'Toggle DevTools',
                     accelerator: process.platform == 'darwin' ? 'Command+i' : 'Ctrl+i',
                     click(item, focusedWindow) {
                         focusedWindow.toggleDevTools();
@@ -107,22 +106,22 @@ function createMainWindow() {
 function startNetCoreApi() {
     var spawn = require('child_process').spawn;
 
-    var wokingDirectory = path.join(__dirname, '../../dist/netcore');
+    var workingDirectory = path.join(__dirname, '../../dist/DeviceManager');
 
     if (process.env.NODE_ENV === 'production') {
-        wokingDirectory = path.join(__dirname, '../dist/netcore');
+        workingDirectory = path.join(__dirname, '../dist/DeviceManager');
     }
 
-    var apiPath = path.join(wokingDirectory, '/netcore.exe');
+    var apiPath = path.join(workingDirectory, '/DeviceManager.API.exe');
 
     if (os.platform() === 'darwin') {
-        apiPath = path.join(wokingDirectory, '//netcore');
+        apiPath = path.join(workingDirectory, '//DeviceManager');
     }
 
     console.log(apiPath);
 
     apiProcess = spawn(apiPath, {
-        cwd: wokingDirectory
+        cwd: workingDirectory
     });
 
     apiProcess.stdout.on('data', (data) => {

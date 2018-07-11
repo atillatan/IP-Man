@@ -2,7 +2,7 @@
  * @Author: Atilla Tanrikulu 
  * @Date: 2018-04-16 10:10:45 
  * @Last Modified by: Atilla Tanrikulu
- * @Last Modified time: 2018-05-18 17:18:18
+ * @Last Modified time: 2018-07-11 14:45:09
  */
 using System;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +17,7 @@ using System.Net;
 using Core.Framework.Service;
 using Microsoft.AspNetCore.Http;
 using System.Text;
+using System.Collections.Generic;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Swashbuckle.AspNetCore.Swagger;
@@ -52,7 +53,7 @@ namespace DeviceManager.API
             services.AddAuthorization()
             .AddAuthentication("Bearer")
             .AddIdentityServerAuthentication(options =>
-            {                
+            {
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
                 options.ApiName = "devicemanager.api";
@@ -218,7 +219,7 @@ namespace DeviceManager.API
 
             app.UseStaticFiles();
 
-            app.UseDefaultFiles();
+            app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } });
 
             app.UseResponseCompression();
 
@@ -230,22 +231,22 @@ namespace DeviceManager.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-                c.RoutePrefix="api";
+                c.RoutePrefix = "api";
             });
 
             app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                  name: "default",
-                  template: "{controller}/{action}/{id?}",
-                  defaults: new { controller = "Home", action = "Index" });
+           {
+               routes.MapRoute(
+                 name: "default",
+                 template: "{controller}/{action}/{id?}");
 
-                routes.MapRoute(
-                "DefaultController",
-                "{*catchall}",
-                new { controller = "Default", action = "Index" }
-                );
-            });
+               // Catch all Route - catches anything not caught be other routes
+               routes.MapRoute(
+                   name: "catch-all",
+                   template: "{*url}",
+                   defaults: new { controller = "Default", action = "Index" }
+               );
+           });
 
         }
     }

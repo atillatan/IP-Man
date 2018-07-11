@@ -18,6 +18,8 @@ namespace DeviceManager.API.Controllers
 {
     public class DefaultController : BaseAPIController<DefaultController>
     {
+
+
         public IActionResult Index()
         {
             string requestedUrl = Request.Path.Value.ToLower();
@@ -25,9 +27,11 @@ namespace DeviceManager.API.Controllers
             if (requestedUrl.Contains("/js/json/") && requestedUrl.EndsWith(".js"))
                 return HandleJsRequest(requestedUrl);
 
-            Response.StatusCode = 404;
-            return Content("404");
+            // Response.StatusCode = 404;            
+            // return Content("404");
+            return File("~/index.html", "text/html");
         }
+
         private IActionResult HandleJsRequest(string requestedUrl)
         {
             Response.ContentType = "application/javascript";

@@ -41,8 +41,8 @@
       "output": "../../dist/electron"
     },
     "extraResources": {
-      "from": "../../dist/netcore/",
-      "to": "dist/netcore",
+      "from": "../../dist/DeviceManager/",
+      "to": "dist/DeviceManager",
       "filter": [
         "**/*"
       ]
