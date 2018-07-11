@@ -6,7 +6,7 @@ const {
 
 const path = require('path');
 const url = require('url');
-process.env.NODE_ENV = 'production';
+//process.env.NODE_ENV = 'production';
 
 let mainWindow;
 const os = require('os');
@@ -115,7 +115,7 @@ function startNetCoreApi() {
     var apiPath = path.join(workingDirectory, '/DeviceManager.API.exe');
 
     if (os.platform() === 'darwin') {
-        apiPath = path.join(workingDirectory, '//DeviceManager');
+        apiPath = path.join(workingDirectory, '//DeviceManager.API');
     }
 
     console.log(apiPath);
