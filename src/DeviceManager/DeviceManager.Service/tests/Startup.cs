@@ -18,7 +18,7 @@ namespace DeviceManager.Service.Tests
         public Startup()
         {
 
-            DeviceManager.Service.Startup.Start($"../../../.vhs/devicemanager/devicemanager.development.config");
+            DeviceManager.Service.Startup.Start($"../../../.config/devicemanager/devicemanager.development.config");
         }
 
         public void Dispose()

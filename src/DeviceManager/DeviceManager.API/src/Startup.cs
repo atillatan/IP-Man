@@ -52,9 +52,8 @@ namespace DeviceManager.API
             services.AddAuthorization()
             .AddAuthentication("Bearer")
             .AddIdentityServerAuthentication(options =>
-            {
-                options.Authority = "http://sso.vhselektronik.com.tr";
-                // options.Authority = "http://localhost:5000";
+            {                
+                options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
                 options.ApiName = "devicemanager.api";
             });
