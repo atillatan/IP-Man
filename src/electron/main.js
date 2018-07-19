@@ -6,8 +6,8 @@ const {
 
 const path = require('path');
 const url = require('url');
-//process.env.NODE_ENV = 'production'; // if you running publish.sh or publish.cmd, you must enable this.
-const debugMode = true; // you must start all projects (DeviceManager.API, DeviceManager.Web, electron) with DEBUGGING manually, look it: ./vscode/launch.json
+process.env.NODE_ENV = 'production'; // if you running publish.sh or publish.cmd, you must enable this.
+const debugMode = false; // you must start all projects (DeviceManager.API, DeviceManager.Web, electron) with DEBUGGING manually, look it: ./vscode/launch.json
 
 let mainWindow;
 const os = require('os');
