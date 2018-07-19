@@ -3,7 +3,7 @@
 # publish DeviceManager project
 cd src/DeviceManager/DeviceManager.API/src
 dotnet restore
-dotnet build
+dotnet build -c Release
 dotnet publish -r osx.10.11-x64 --self-contained --output ../../../../dist/DeviceManager
 
 # copy configuration 

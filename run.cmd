@@ -1,10 +1,11 @@
 @echo off
 set cpycmd=/D /I /E /F /Y /H /R 
+set ASPNETCORE_ENVIRONMENT=Production
 
 :: publish DeviceManager project
 cd src/DeviceManager/DeviceManager.API/src
 dotnet restore
-dotnet build
+dotnet build -c Release
 dotnet publish -r win10-x64 --self-contained --output ../../../../dist/DeviceManager
 
 :: copy configuration 

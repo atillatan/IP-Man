@@ -4,7 +4,7 @@ set cpycmd=/D /I /E /F /Y /H /R
 :: publish DeviceManager project
 cd src/DeviceManager/DeviceManager.API/src
 dotnet restore
-dotnet build
+dotnet build -c Release
 dotnet publish -r win10-x64 --self-contained --output ../../../../dist/DeviceManager
 
 :: copy configuration 
