@@ -7,6 +7,7 @@ const {
 const path = require('path');
 const url = require('url');
 //process.env.NODE_ENV = 'production';
+const debugMode = true; // you can start API manually with DEBUGGING 
 
 let mainWindow;
 const os = require('os');
@@ -36,7 +37,9 @@ process.on('exit', function () {
 // #endregion
 
 function init() {
-    startNetCoreApi();
+    if (!debugMode) {
+        startNetCoreApi();
+    }
     createMainWindow();
 }
 
@@ -49,12 +52,10 @@ function createMainWindow() {
         frame: true,
         resizable: true
     });
-
-    if (process.env.NODE_ENV === 'production') {
-        mainWindow.loadURL('http://localhost:5001/index.html');
+    if (!debugMode) {
+        mainWindow.loadURL('http://localhost:5001');
     } else {
-        //mainWindow.loadURL('http://localhost:4200');
-        mainWindow.loadURL('http://localhost:5001/index.html');
+        mainWindow.loadURL('http://localhost:4200');
     }
 
     // Quit app when closed

@@ -32,7 +32,8 @@
                 "cwd": "${workspaceFolder}/src/DeviceManager/DeviceManager.Web"
             },
             "args": [
-                "serve"
+                "serve",
+                "--open"
             ],
             "problemMatcher": "$msCompile"
             

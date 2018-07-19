@@ -22,5 +22,3 @@ cd ../../electron
 npm install
 npm run-script build
 
-cmd /c npm start
-
