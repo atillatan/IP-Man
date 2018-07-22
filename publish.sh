@@ -1,5 +1,5 @@
 #!/bin/sh
-
+export ASPNETCORE_ENVIRONMENT="production"
 # publish DeviceManager project
 cd src/DeviceManager/DeviceManager.API/src
 dotnet restore
