@@ -20,7 +20,7 @@ cp -Rf "./dist/" "../../../dist/DeviceManager/wwwroot"
 cd ../../electron
 npm install
 npm run-script build
-
+ 
 npm start
 
 
